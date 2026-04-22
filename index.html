@@ -245,6 +245,35 @@
       flex-wrap: wrap;
       margin-top: 10px;
     }
+    .hero-ca-box {
+      margin: 16px auto 0;
+      max-width: 760px;
+      background: #000;
+      border: 2px solid var(--green);
+      box-shadow: 0 0 16px rgba(0,255,65,0.28);
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .hero-ca-box:hover {
+      background: #001400;
+      transform: translateY(-2px);
+    }
+    .hero-ca-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #7d7d7d;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .hero-ca-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--green);
+      word-break: break-all;
+    }
     .hero-live-widget {
       margin: 26px auto 0;
       width: min(92vw, 760px);
@@ -1250,6 +1279,10 @@
       <a href="https://www.dextools.io/app/ether/pair-explorer/0xa7bfc948d6e5b50cafb868aa75c5cefd7324c902" target="_blank" class="btn btn-green btn-shake">📈 CHART</a>
       <a href="#howtobuy" class="btn btn-yellow btn-shake">🛒 BUY NOW</a>
     </div>
+    <div class="hero-ca-box" onclick="copyHeroCA()" title="Click to copy contract">
+      <div class="hero-ca-label">Contract Address (Click to Copy)</div>
+      <div class="hero-ca-value" id="heroContractAddr">0x50a69cea809b4afed9a31a72f049a5b0b33bf5e3</div>
+    </div>
     <div class="hero-live-widget" id="heroLiveWidget">
       <div class="hero-live-head">
         <span>DIAMOND HANDS MOMENTUM</span>
@@ -1683,6 +1716,15 @@
   // Copy contract
   function copyContract() {
     const addr = document.getElementById('contractAddr').textContent.trim();
+    const toast = document.getElementById('copyToast');
+    navigator.clipboard.writeText(addr).then(() => {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }).catch(() => {});
+  }
+
+  function copyHeroCA() {
+    const addr = document.getElementById('heroContractAddr').textContent.trim();
     const toast = document.getElementById('copyToast');
     navigator.clipboard.writeText(addr).then(() => {
       toast.classList.add('show');
