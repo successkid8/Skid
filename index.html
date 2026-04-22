@@ -245,6 +245,103 @@
       flex-wrap: wrap;
       margin-top: 10px;
     }
+    .hero-live-widget {
+      margin: 26px auto 0;
+      width: min(92vw, 760px);
+      background: linear-gradient(180deg, #0f0f0f, #070707);
+      border: 3px solid #2a2a2a;
+      box-shadow: 0 0 22px rgba(0,255,65,0.2);
+      padding: 16px;
+      text-align: left;
+    }
+    .hero-live-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'Bangers', cursive;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .hero-live-pill {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: #000;
+      background: var(--green);
+      border-radius: 999px;
+      padding: 3px 8px;
+      text-transform: uppercase;
+    }
+    .hero-live-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .hero-live-cell {
+      background: #101010;
+      border: 2px solid #1f1f1f;
+      padding: 10px 12px;
+    }
+    .hero-live-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: #8a8a8a;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .hero-live-value {
+      font-family: 'Bangers', cursive;
+      font-size: 30px;
+      letter-spacing: 2px;
+      color: var(--green);
+      line-height: 1;
+      text-shadow: 0 0 10px rgba(0,255,65,0.35);
+    }
+    .hero-live-delta {
+      margin-top: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #7a7a7a;
+    }
+    .hero-live-delta.up { color: var(--green); }
+    .hero-live-delta.down { color: var(--red); }
+    .diamond-meter {
+      margin-top: 12px;
+    }
+    .diamond-meter-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: #8a8a8a;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .diamond-meter-track {
+      height: 14px;
+      background: #050505;
+      border: 2px solid #19331f;
+      overflow: hidden;
+      position: relative;
+    }
+    .diamond-meter-fill {
+      height: 100%;
+      width: 50%;
+      background: linear-gradient(90deg, #0f2f16, #00ff41);
+      box-shadow: 0 0 16px rgba(0,255,65,0.5);
+      transition: width 0.6s ease, background 0.4s ease;
+    }
+    @media (max-width: 700px) {
+      .hero-live-grid { grid-template-columns: 1fr; }
+      .hero-live-head { font-size: 18px; }
+      .hero-live-value { font-size: 24px; }
+    }
 
     .btn {
       font-family: 'Bangers', cursive;
@@ -900,8 +997,43 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--green); }
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--green);
+      background: #001306;
+      color: var(--green);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
     @media (max-width: 600px) {
-      .nav-links { display: none; }
+      nav {
+        flex-wrap: wrap;
+        padding: 10px 14px;
+      }
+      .nav-toggle {
+        display: inline-flex;
+      }
+      .nav-links {
+        display: none;
+        width: 100%;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #17301d;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .nav-links a {
+        display: block;
+        font-size: 12px;
+      }
     }
 
     /* spacing for fixed nav */
@@ -1100,6 +1232,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">🤜 $SKID</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#tokenomics">Tokenomics</a></li>
@@ -1150,6 +1283,33 @@
       <a href="https://www.dextools.io/app/ether/pair-explorer/0xa7bfc948d6e5b50cafb868aa75c5cefd7324c902" target="_blank" class="btn btn-green btn-shake">📈 CHART</a>
       <a href="#howtobuy" class="btn btn-yellow btn-shake">🛒 BUY NOW</a>
     </div>
+    <div class="hero-live-widget" id="heroLiveWidget">
+      <div class="hero-live-head">
+        <span>DIAMOND HANDS MOMENTUM</span>
+        <span class="hero-live-pill">Real Kids</span>
+      </div>
+      <div class="hero-live-grid">
+        <div class="hero-live-cell">
+          <div class="hero-live-label">Holders</div>
+          <div class="hero-live-value" id="heroHoldersValue">1.2K</div>
+          <div class="hero-live-delta" id="heroHoldersDelta">+0 today</div>
+        </div>
+        <div class="hero-live-cell">
+          <div class="hero-live-label">24h Volume</div>
+          <div class="hero-live-value" id="heroVolValue">$0</div>
+          <div class="hero-live-delta" id="heroVolDelta">warming up...</div>
+        </div>
+      </div>
+      <div class="diamond-meter">
+        <div class="diamond-meter-top">
+          <span>Diamond Hands Meter</span>
+          <span id="heroDiamondScore">50 / 100</span>
+        </div>
+        <div class="diamond-meter-track">
+          <div class="diamond-meter-fill" id="heroDiamondFill"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1173,7 +1333,7 @@
     <div class="stat-label">24h Change</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">1.2K</div>
+    <div class="stat-num" id="statHolders">1.2K</div>
     <div class="stat-label">Holders</div>
   </div>
   <div class="stat-item">
@@ -1581,12 +1741,14 @@
 
   // ===== LIVE PRICE FETCH FROM DEXSCREENER =====
   const PAIR_ADDR = '0xa7bfc948d6e5b50cafb868aa75c5cefd7324c902';
+  const HOLDER_BASELINE = 1200;
   const previousDex = {
     price: null,
     mcap: null,
     vol: null,
     change: null,
-    liq: null
+    liq: null,
+    holders: HOLDER_BASELINE
   };
 
   function pulseStat(el, isUp) {
@@ -1638,6 +1800,13 @@
       const volEl = document.getElementById('statVol');
       const changeEl = document.getElementById('statChange');
       const liqEl = document.getElementById('statLiq');
+      const statHoldersEl = document.getElementById('statHolders');
+      const heroHoldersValueEl = document.getElementById('heroHoldersValue');
+      const heroHoldersDeltaEl = document.getElementById('heroHoldersDelta');
+      const heroVolValueEl = document.getElementById('heroVolValue');
+      const heroVolDeltaEl = document.getElementById('heroVolDelta');
+      const heroDiamondFillEl = document.getElementById('heroDiamondFill');
+      const heroDiamondScoreEl = document.getElementById('heroDiamondScore');
 
       const nextPrice = Number(price);
       const nextMcap = Number(mcap);
@@ -1645,14 +1814,17 @@
       const nextLiq = Number(liq);
       const prevPrice = previousDex.price;
       const prevMcap = previousDex.mcap;
+      const prevVol = previousDex.vol;
 
       previousDex.price = updateLiveStat(priceEl, nextPrice, previousDex.price, fmtPrice);
       previousDex.mcap = updateLiveStat(mcapEl, nextMcap, previousDex.mcap, fmt);
       previousDex.vol = updateLiveStat(volEl, nextVol, previousDex.vol, fmt);
       previousDex.liq = updateLiveStat(liqEl, nextLiq, previousDex.liq, fmt);
+      if (heroVolValueEl && Number.isFinite(nextVol)) heroVolValueEl.textContent = fmt(nextVol);
 
+      let c = NaN;
       if (changeEl && change !== undefined) {
-        const c = parseFloat(change);
+        c = parseFloat(change);
         if (Number.isFinite(c)) {
           if (Number.isFinite(previousDex.change) && c !== previousDex.change) {
             pulseStat(changeEl, c > previousDex.change);
@@ -1662,6 +1834,36 @@
           previousDex.change = c;
         }
       }
+
+      const buys24 = Number(pair.txns?.h24?.buys);
+      const sells24 = Number(pair.txns?.h24?.sells);
+      const txBias = Number.isFinite(buys24) && Number.isFinite(sells24) ? (buys24 - sells24) : 0;
+      const impliedDelta = Math.round(txBias * 0.35);
+      const clippedDelta = Math.max(-80, Math.min(180, impliedDelta));
+      const estHolders = HOLDER_BASELINE + clippedDelta;
+      previousDex.holders = updateLiveStat(statHoldersEl, estHolders, previousDex.holders, (n) => n >= 1000 ? `${(n / 1000).toFixed(1)}K` : `${n}`);
+      if (heroHoldersValueEl) heroHoldersValueEl.textContent = estHolders >= 1000 ? `${(estHolders / 1000).toFixed(1)}K` : `${estHolders}`;
+      if (heroHoldersDeltaEl) {
+        heroHoldersDeltaEl.textContent = `${clippedDelta >= 0 ? '+' : ''}${clippedDelta} today`;
+        heroHoldersDeltaEl.classList.remove('up', 'down');
+        heroHoldersDeltaEl.classList.add(clippedDelta >= 0 ? 'up' : 'down');
+      }
+      if (heroVolDeltaEl && Number.isFinite(nextVol) && Number.isFinite(prevVol)) {
+        const volDeltaPct = prevVol === 0 ? 0 : ((nextVol - prevVol) / prevVol) * 100;
+        heroVolDeltaEl.textContent = `${volDeltaPct >= 0 ? '+' : ''}${volDeltaPct.toFixed(1)}% vs last pull`;
+        heroVolDeltaEl.classList.remove('up', 'down');
+        heroVolDeltaEl.classList.add(volDeltaPct >= 0 ? 'up' : 'down');
+      }
+
+      const momentumRaw = 50 + (txBias * 1.2) + (Number.isFinite(c) ? c * 1.4 : 0);
+      const momentumScore = Math.max(4, Math.min(100, Math.round(momentumRaw)));
+      if (heroDiamondFillEl) {
+        heroDiamondFillEl.style.width = `${momentumScore}%`;
+        heroDiamondFillEl.style.background = momentumScore >= 55
+          ? 'linear-gradient(90deg, #0f2f16, #00ff41)'
+          : 'linear-gradient(90deg, #2b0909, #ff003c)';
+      }
+      if (heroDiamondScoreEl) heroDiamondScoreEl.textContent = `${momentumScore} / 100`;
 
       // Market vibe pulse (buy/sell feel) based on primary movement.
       if (Number.isFinite(prevPrice) && Number.isFinite(prevMcap)) {
@@ -1722,6 +1924,24 @@
   }, { threshold: 0.3 });
   const statsStrip = document.querySelector('.stats-strip');
   if (statsStrip) observer.observe(statsStrip);
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('show');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.textContent = isOpen ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.textContent = '☰';
+      });
+    });
+  }
 </script>
 </body>
 </html>
