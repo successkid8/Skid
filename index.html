@@ -149,46 +149,6 @@
       text-align: center;
       max-width: 900px;
     }
-    .hero-sticker {
-      position: absolute;
-      z-index: 2;
-      font-family: 'Bangers', cursive;
-      letter-spacing: 2px;
-      border: 3px solid #000;
-      box-shadow: 5px 5px 0 #000;
-      transform-origin: center;
-      user-select: none;
-      pointer-events: none;
-    }
-    .hero-sticker-left {
-      top: 20%;
-      left: 5%;
-      background: var(--yellow);
-      color: #000;
-      padding: 8px 14px;
-      transform: rotate(-12deg);
-      animation: stickerBounce 3.2s ease-in-out infinite;
-    }
-    .hero-sticker-right {
-      top: 24%;
-      right: 6%;
-      background: var(--red);
-      color: #fff;
-      padding: 8px 14px;
-      transform: rotate(10deg);
-      animation: stickerBounce 3.2s ease-in-out infinite 0.7s;
-    }
-    @keyframes stickerBounce {
-      0%, 100% { transform: translateY(0) rotate(-12deg); }
-      50% { transform: translateY(-7px) rotate(-9deg); }
-    }
-    .hero-sticker-right {
-      animation-name: stickerBounceRight;
-    }
-    @keyframes stickerBounceRight {
-      0%, 100% { transform: translateY(0) rotate(10deg); }
-      50% { transform: translateY(-7px) rotate(7deg); }
-    }
 
     .badge {
       display: inline-block;
@@ -284,99 +244,6 @@
       justify-content: center;
       flex-wrap: wrap;
       margin-top: 10px;
-    }
-    .hero-meme-stack {
-      margin: 30px auto 0;
-      display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 16px;
-      max-width: 760px;
-      align-items: stretch;
-    }
-    .hype-card {
-      background: linear-gradient(180deg, #121212, #090909);
-      border: 3px solid #1f1f1f;
-      box-shadow: 0 0 28px rgba(0,255,65,0.18);
-      padding: 14px 16px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .hype-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'Bangers', cursive;
-      letter-spacing: 1px;
-      color: var(--yellow);
-      font-size: 18px;
-    }
-    .hype-pill {
-      font-family: 'Oswald', sans-serif;
-      font-size: 10px;
-      color: #000;
-      background: var(--green);
-      padding: 2px 8px;
-      border-radius: 999px;
-      letter-spacing: 1px;
-    }
-    .hype-row {
-      font-family: 'Oswald', sans-serif;
-      font-size: 12px;
-      color: #b8b8b8;
-      letter-spacing: 1px;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px dashed #1f1f1f;
-      padding-bottom: 5px;
-    }
-    .hype-row strong {
-      color: var(--green);
-      font-family: 'Bangers', cursive;
-      font-size: 18px;
-      letter-spacing: 1px;
-      font-weight: 400;
-    }
-    .meme-radar {
-      border: 3px solid var(--green);
-      background: radial-gradient(circle at center, rgba(0,255,65,0.2) 0%, rgba(0,0,0,0.95) 65%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .meme-radar::before {
-      content: "";
-      position: absolute;
-      width: 180%;
-      height: 180%;
-      background: conic-gradient(from 0deg, rgba(0,255,65,0.0), rgba(0,255,65,0.5), rgba(0,255,65,0.0));
-      animation: radarSweep 3s linear infinite;
-    }
-    .meme-radar::after {
-      content: "MEME LEVEL: UNHINGED";
-      position: relative;
-      z-index: 2;
-      font-family: 'Bangers', cursive;
-      color: var(--green);
-      letter-spacing: 2px;
-      text-align: center;
-      max-width: 130px;
-      text-shadow: 0 0 10px rgba(0,255,65,0.8);
-    }
-    @keyframes radarSweep {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @media (max-width: 900px) {
-      .hero-sticker { display: none; }
-      .hero-meme-stack {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-      }
-      .meme-radar { min-height: 120px; }
     }
 
     .btn {
@@ -638,6 +505,39 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-top: 6px;
+    }
+
+    /* donut chart */
+    .donut-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .donut {
+      width: 220px;
+      height: 220px;
+    }
+    .donut-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+    .legend-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 2px solid #000;
     }
 
     /* ===== MEME GALLERY ===== */
@@ -1226,8 +1126,6 @@
   <span class="floating-emoji" style="left:70%; animation-duration:7s; animation-delay:0.5s;">🤜</span>
   <span class="floating-emoji" style="left:40%; animation-duration:12s; animation-delay:3s;">💰</span>
   <span class="floating-emoji" style="left:55%; animation-duration:10s; animation-delay:1.5s;">🔥</span>
-  <span class="hero-sticker hero-sticker-left">BUY THE DIP</span>
-  <span class="hero-sticker hero-sticker-right">NO PAPER HANDS</span>
 
   <div class="hero-inner">
     <div class="badge">✅ ETHEREUM BLOCKCHAIN · EST. 2023</div>
@@ -1251,15 +1149,6 @@
     <div class="hero-buttons">
       <a href="https://www.dextools.io/app/ether/pair-explorer/0xa7bfc948d6e5b50cafb868aa75c5cefd7324c902" target="_blank" class="btn btn-green btn-shake">📈 CHART</a>
       <a href="#howtobuy" class="btn btn-yellow btn-shake">🛒 BUY NOW</a>
-    </div>
-    <div class="hero-meme-stack">
-      <div class="hype-card">
-        <div class="hype-head">SKID SIGNAL BOARD <span class="hype-pill">LIVE VIBES</span></div>
-        <div class="hype-row">Diamond Hands <strong>99.9%</strong></div>
-        <div class="hype-row">Dip Appetite <strong>MAX</strong></div>
-        <div class="hype-row">FOMO Pressure <strong>ELEVATED</strong></div>
-      </div>
-      <div class="meme-radar"></div>
     </div>
   </div>
 </section>
@@ -1385,6 +1274,20 @@
     </div>
   </div>
 
+  <div class="donut-wrap">
+    <svg class="donut" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="45" fill="none" stroke="#0d1a0d" stroke-width="22"/>
+      <!-- 50% community - green -->
+      <circle cx="60" cy="60" r="45" fill="none" stroke="#00ff41" stroke-width="22"
+        stroke-dasharray="141.4 141.4" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+      <!-- 30% liquidity - yellow -->
+      <circle cx="60" cy="60" r="45" fill="none" stroke="#ffe600" stroke-width="22"
+        stroke-dasharray="84.8 141.4" stroke-dashoffset="-141.4" transform="rotate(-90 60 60)"/>
+      <!-- 20% marketing - red -->
+      <circle cx="60" cy="60" r="45" fill="none" stroke="#ff003c" stroke-width="22"
+        stroke-dasharray="56.5 169.6" stroke-dashoffset="-226.2" transform="rotate(-90 60 60)"/>
+    </svg>
+  </div>
 </section>
 </div>
 
@@ -1583,7 +1486,7 @@
   <h2 class="section-title" data-text="JOIN THE MOVEMENT"><span>JOIN THE MOVEMENT 🤜</span></h2>
   <p style="text-align:center; color:#666; margin-bottom:30px;">Degens. Believers. Diamond hands. All welcome. 🫂</p>
   <div class="community-grid">
-    <a href="https://x.com/" target="_blank" class="social-card">
+    <a href="https://x.com/SuccesskidEthOG" target="_blank" class="social-card">
       <span class="social-icon"><img src="https://cdn.simpleicons.org/x/FFFFFF" alt="X logo"></span>
       <span class="social-name">TWITTER/X</span>
       <span class="social-desc">Shilling hours: always</span>
