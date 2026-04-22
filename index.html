@@ -604,39 +604,6 @@
       margin-top: 6px;
     }
 
-    /* donut chart */
-    .donut-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 40px;
-      margin-top: 40px;
-    }
-    .donut {
-      width: 220px;
-      height: 220px;
-    }
-    .donut-legend {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 15px;
-      letter-spacing: 1px;
-    }
-    .legend-dot {
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      border: 2px solid #000;
-    }
-
     /* ===== MEME GALLERY ===== */
     .meme-gallery {
       display: grid;
@@ -1429,24 +1396,9 @@
     </div>
     <div class="token-card">
       <span class="token-card-icon">📅</span>
-      <div class="token-card-value">05/05/23</div>
+      <div class="token-card-value">May 5, 2023</div>
       <div class="token-card-label">Pool Created</div>
     </div>
-  </div>
-
-  <div class="donut-wrap">
-    <svg class="donut" viewBox="0 0 120 120">
-      <circle cx="60" cy="60" r="45" fill="none" stroke="#0d1a0d" stroke-width="22"/>
-      <!-- 50% community - green -->
-      <circle cx="60" cy="60" r="45" fill="none" stroke="#00ff41" stroke-width="22"
-        stroke-dasharray="141.4 141.4" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
-      <!-- 30% liquidity - yellow -->
-      <circle cx="60" cy="60" r="45" fill="none" stroke="#ffe600" stroke-width="22"
-        stroke-dasharray="84.8 141.4" stroke-dashoffset="-141.4" transform="rotate(-90 60 60)"/>
-      <!-- 20% marketing - red -->
-      <circle cx="60" cy="60" r="45" fill="none" stroke="#ff003c" stroke-width="22"
-        stroke-dasharray="56.5 169.6" stroke-dashoffset="-226.2" transform="rotate(-90 60 60)"/>
-    </svg>
   </div>
 </section>
 </div>
